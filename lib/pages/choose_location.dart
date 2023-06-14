@@ -21,14 +21,7 @@ class _ChooseLocationState extends State<ChooseLocation> {
     String bio = await Future.delayed(const Duration(seconds: 2), (){
       return 'Meat eaters, gamers & bug collector';
     });
-    print('$username - $bio');
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    getData();
-    print('hey there!');
+    // print('$username - $bio');
   }
 
   @override
