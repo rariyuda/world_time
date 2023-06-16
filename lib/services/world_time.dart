@@ -1,6 +1,9 @@
+// ignore_for_file: avoid_print
+
 import 'package:http/http.dart';
 import 'dart:convert';
 import 'package:intl/intl.dart';
+import 'dart:async';
 
 class WorldTime {
 
@@ -8,6 +11,7 @@ class WorldTime {
   late String time;
   late String flag; // url to an asset flag eg. Asia/Jakarta
   late String url; // location url for API endpoint
+  late bool isDaytime; // daytime checker
 
   WorldTime({required this.location, required this.flag, required this.url});
 
@@ -18,6 +22,7 @@ class WorldTime {
 
     // make the request
       Response response = await get(Uri.parse('http://worldtimeapi.org/api/timezone/$url'));
+      await Future.delayed(const Duration(seconds: 3));
       Map data = jsonDecode(response.body);
       
       //get properties from data
@@ -30,6 +35,7 @@ class WorldTime {
       now = now.add(Duration(hours: int.parse(offset)));
       
       // set the time property
+      isDaytime = now.hour> 6 && now.hour < 18 ? true : false; 
       time = DateFormat.jm().format(now);
       }
       catch(e){
