@@ -11,7 +11,7 @@ class WorldTime {
   late String time;
   late String flag; // url to an asset flag eg. Asia/Jakarta
   late String url; // location url for API endpoint
-  late bool isDaytime; // daytime checker
+  bool isDaytime = true; // daytime checker
 
   WorldTime({required this.location, required this.flag, required this.url});
 
